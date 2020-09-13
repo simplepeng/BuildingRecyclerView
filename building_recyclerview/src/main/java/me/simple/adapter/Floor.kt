@@ -1,11 +1,13 @@
 package me.simple.adapter
 
+import android.graphics.Color
+
 class Floor(val layoutId: Int) {
 
-    private var type = ""
-    private var divider: Divider? = null
-    private var onBindBlock: ((holder: BuildingViewHolder) -> Unit)? = null
-    private var onItemClick: ((holder: BuildingViewHolder) -> Unit)? = null
+    var type = ""
+    var divider: Divider? = null
+    var onBindBlock: ((holder: BuildingViewHolder) -> Unit)? = null
+    var onItemClick: ((holder: BuildingViewHolder) -> Unit)? = null
 
     fun type(type: String): Floor {
         this.type = type
@@ -28,9 +30,9 @@ class Floor(val layoutId: Int) {
     }
 
     fun divider(
-        padding: Int,
-        color: Int,
-        size: Int
+        padding: Int = 0,
+        color: Int = Color.BLACK,
+        size: Int = 1
     ): Floor {
         divider(Divider(padding, padding, color, size))
         return this

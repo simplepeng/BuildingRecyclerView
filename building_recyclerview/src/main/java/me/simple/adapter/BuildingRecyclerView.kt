@@ -20,8 +20,12 @@ class BuildingRecyclerView @JvmOverloads constructor(
     }
 
     fun build() {
-//        addItemDecoration()
+        addItemDecoration(BuildingItemDecoration(floorItems))
         layoutManager = LinearLayoutManager(context)
         adapter = BuildingAdapter(floorItems)
+    }
+
+    fun notifyItemChangeByType(type: String) {
+        (adapter as BuildingAdapter).notifyItemChangeByType(type)
     }
 }
