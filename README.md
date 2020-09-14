@@ -1,5 +1,7 @@
 # BuildingRecyclerView
 
+[![](https://www.jitpack.io/v/simplepeng/BuildingRecyclerView.svg)](https://www.jitpack.io/#simplepeng/BuildingRecyclerView)
+
 像修建楼房一样使用`RecyclerView`，其实主要是用`RecyclerView`来写`个人页面`、`设置页面`那种布局。
 
 相比较`ScrollView`那种写法的优点：`方便增删Item`，`方便更新Item`，`不用写那么多id`，`方便配置不同的Divider`
