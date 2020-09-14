@@ -11,7 +11,16 @@
 ## 导入依赖
 
 ```groovy
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://www.jitpack.io' }
+		}
+	}
+```
 
+```groovy
+implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.0'
 ```
 
 ## 使用
@@ -41,7 +50,7 @@
             }
 
 				//一定记得要调用
-			  recyclerView.build()
+			recyclerView.build()
 ```
 
 [Example](https://github.com/simplepeng/BuildingRecyclerView/blob/master/app/src/main/java/demo/building/MainActivity.kt)
