@@ -7,6 +7,7 @@ class Floor(val layoutId: Int) {
     var divider: Divider? = null
     var onBindBlock: ((holder: BuildingViewHolder) -> Unit)? = null
     var onItemClick: ((holder: BuildingViewHolder) -> Unit)? = null
+    internal var recyclable:Boolean = true
 
     fun type(type: String): Floor {
         this.type = type
@@ -45,5 +46,9 @@ class Floor(val layoutId: Int) {
     fun onItemClick(onItemClick: (holder: BuildingViewHolder) -> Unit): Floor {
         this.onItemClick = onItemClick
         return this
+    }
+
+    fun recyclable(recyclable:Boolean){
+        this.recyclable = recyclable
     }
 }

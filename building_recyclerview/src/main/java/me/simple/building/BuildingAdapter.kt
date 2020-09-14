@@ -15,9 +15,14 @@ class BuildingAdapter(private val floorItems: MutableList<Floor>) :
         parent: ViewGroup,
         viewType: Int
     ): BuildingViewHolder {
-        val layoutId = floorItems[viewType].layoutId
+        val floor = floorItems[viewType]
+
+        val layoutId = floor.layoutId
         val inflater = LayoutInflater.from(parent.context)
-        return BuildingViewHolder(inflater.inflate(layoutId, parent, false))
+        val holder = BuildingViewHolder(inflater.inflate(layoutId, parent, false))
+        holder.setIsRecyclable(floor.recyclable)
+
+        return holder
     }
 
     override fun getItemCount(): Int {
