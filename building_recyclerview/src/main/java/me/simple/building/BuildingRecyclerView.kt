@@ -1,4 +1,4 @@
-package me.simple.adapter
+package me.simple.building
 
 import android.content.Context
 import android.util.AttributeSet

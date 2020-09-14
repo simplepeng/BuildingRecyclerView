@@ -1,4 +1,4 @@
-package me.simple.adapter
+package me.simple.building
 
 import android.graphics.Color
 
@@ -20,19 +20,19 @@ class Floor(val layoutId: Int) {
     }
 
     fun divider(
-        paddingLeft: Int,
-        paddingRight: Int,
-        color: Int,
-        size: Int
+        paddingLeft: Int = Divider.PADDING_LEFT,
+        paddingRight: Int = Divider.PADDING_RIGHT,
+        color: Int = Divider.COLOR,
+        size: Int = Divider.SIZE
     ): Floor {
         divider(Divider(paddingLeft, paddingRight, color, size))
         return this
     }
 
     fun divider(
-        padding: Int = 0,
-        color: Int = Color.BLACK,
-        size: Int = 1
+        padding: Int = Divider.PADDING_LEFT,
+        color: Int = Divider.COLOR,
+        size: Int = Divider.SIZE
     ): Floor {
         divider(Divider(padding, padding, color, size))
         return this
