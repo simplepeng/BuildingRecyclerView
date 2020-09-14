@@ -10,7 +10,8 @@ class BuildingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val viewMap = hashMapOf<Int, View>()
 
     init {
-        setIsRecyclable(false)
+        //这个属性奇怪，好好研究
+//        setIsRecyclable(false)
     }
 
     fun <T : View> getView(id: Int): T? {
