@@ -32,8 +32,10 @@ class BuildingAdapter(private val floorItems: MutableList<Floor>) :
 
         floor.onBindBlock?.invoke(holder)
 
-        holder.itemView.setOnClickListener {
-            floor.onItemClick?.invoke(holder)
+        floor.onItemClick?.let { block ->
+            holder.itemView.setOnClickListener {
+                block.invoke(holder)
+            }
         }
     }
 

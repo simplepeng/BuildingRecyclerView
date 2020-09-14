@@ -13,30 +13,27 @@ class BuildingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         setIsRecyclable(false)
     }
 
-    fun setText(id: Int, text: String) {
-        var textView: TextView? = viewMap[id] as? TextView
-        if (textView == null) {
-            textView = itemView.findViewById(id)
-            viewMap[id] = textView
+    fun <T : View> getView(id: Int): T? {
+        var view: T? = viewMap[id] as? T
+        if (view == null) {
+            view = itemView.findViewById(id)
+            viewMap[id] = view
         }
+        return view
+    }
+
+    fun setText(id: Int, text: String) {
+        val textView: TextView? = getView(id)
         textView?.text = text
     }
 
     fun setText(id: Int, resId: Int) {
-        var textView: TextView? = viewMap[id] as? TextView
-        if (textView == null) {
-            textView = itemView.findViewById(id)
-            viewMap[id] = textView
-        }
+        val textView: TextView? = getView(id)
         textView?.setText(resId)
     }
 
     fun setImage(id: Int, resId: Int) {
-        var imageView: ImageView? = viewMap[id] as? ImageView
-        if (imageView == null) {
-            imageView = itemView.findViewById(id)
-            viewMap[id] = imageView
-        }
+        val imageView: ImageView? = getView(id)
         imageView?.setImageResource(resId)
     }
 }

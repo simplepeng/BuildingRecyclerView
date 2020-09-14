@@ -1,10 +1,9 @@
 package me.simple.building
 
-import android.graphics.Color
 
 class Floor(val layoutId: Int) {
 
-    var type = ""
+    internal var type = ""
     var divider: Divider? = null
     var onBindBlock: ((holder: BuildingViewHolder) -> Unit)? = null
     var onItemClick: ((holder: BuildingViewHolder) -> Unit)? = null

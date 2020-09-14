@@ -19,16 +19,17 @@ class BuildingItemDecoration(private val floorItems: MutableList<Floor>) :
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        super.getItemOffsets(outRect, view, parent, state)
         if (parent.layoutManager == null) return
         if (parent.adapter == null) return
         if (parent.adapter!!.itemCount == 0) return
         if (floorItems.isEmpty()) return
 
-        var dividerSize = 0
-        for (floor in floorItems) {
-            if (floor.divider == null) continue
-            dividerSize = floor.divider!!.size
+        val position = parent.getChildAdapterPosition(view)
+        val floor = floorItems[position]
+        if (floor.divider == null) {
+            outRect.set(0, 0, 0, 0)
+        } else {
+            val dividerSize = floor.divider!!.size
             outRect.set(0, 0, 0, dividerSize)
         }
     }
@@ -38,7 +39,6 @@ class BuildingItemDecoration(private val floorItems: MutableList<Floor>) :
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        super.onDraw(canvas, parent, state)
         if (parent.layoutManager == null) return
         if (parent.adapter == null) return
         if (parent.adapter!!.itemCount == 0) return

@@ -11,9 +11,9 @@ data class Divider(
 
 ) {
     companion object {
+        const val PADDING_LEFT = 0
+        const val PADDING_RIGHT = 0
         const val COLOR = Color.LTGRAY
-        const val SIZE = Color.LTGRAY
-        const val PADDING_LEFT: Int = 0
-        const val PADDING_RIGHT: Int = 0
+        const val SIZE = 1
     }
 }
