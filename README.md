@@ -35,6 +35,12 @@ implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.0'
 ```
 
 ```kotlin
+        //注册头部
+        recyclerView.register(R.layout.item_header)
+            .type("header")
+            .divider(color = Color.parseColor("#f3f4f8"), size = 10.dp)
+
+        //注册消息中心
         recyclerView.register(R.layout.item_notify)
             .type("notify")
             .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
@@ -51,11 +57,13 @@ implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.0'
                 recyclerView.notifyItemChangeByType("notify")
             }
 
-				//一定记得要调用
-			recyclerView.build()
+				...
+
+        //一定记得要调用
+        recyclerView.build()
 ```
 
-[Example](https://github.com/simplepeng/BuildingRecyclerView/blob/master/app/src/main/java/demo/building/MainActivity.kt)
+完整使用示例：[Example](https://github.com/simplepeng/BuildingRecyclerView/blob/master/app/src/main/java/demo/building/MainActivity.kt)
 
 ### 更新Item
 
