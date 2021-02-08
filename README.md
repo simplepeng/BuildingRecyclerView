@@ -75,6 +75,6 @@ recyclerView.notifyItemChanged("notify")
 
 ## 版本迭代
 
-* 增加`findViewHolder`方法，修改notifyType方法名。
+* v1.0.1：增加`findViewHolder`方法，修改notifyType方法名。
 
 * v1.0.0：首次上传。
