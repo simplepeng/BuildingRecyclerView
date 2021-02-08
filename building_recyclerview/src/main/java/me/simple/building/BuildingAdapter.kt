@@ -52,5 +52,4 @@ class BuildingAdapter(private val floorItems: MutableList<Floor>) :
         }
     }
 
-
 }
