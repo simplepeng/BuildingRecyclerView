@@ -37,6 +37,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'me.simple:nice-ktx:1.0.0'
 
-    implementation project(path: ':building_recyclerview')
-//    implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.0'
+//    implementation project(path: ':building_recyclerview')
+    implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.1'
 }

@@ -22,7 +22,7 @@
 ```
 
 ```groovy
-implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.0'
+implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.1'
 ```
 
 ## 使用
@@ -68,11 +68,13 @@ implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.0'
 ### 更新Item
 
 ```kotlin
-recyclerView.notifyItemChangeByType("notify")
+recyclerView.notifyItemChanged("notify")
 ```
 
 `type`	就是`register`后传入的那个`type`。
 
 ## 版本迭代
 
-* v1.0.0：首次上传
+* 增加`findViewHolder`方法，修改notifyType方法名。
+
+* v1.0.0：首次上传。
