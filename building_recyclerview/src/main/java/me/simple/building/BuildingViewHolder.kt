@@ -14,6 +14,7 @@ class BuildingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 //        setIsRecyclable(false)
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun <T : View> getView(id: Int): T? {
         var view: T? = viewMap[id] as? T
         if (view == null) {

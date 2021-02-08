@@ -44,7 +44,7 @@ class BuildingAdapter(private val floorItems: MutableList<Floor>) :
         }
     }
 
-    fun notifyItemChangeByType(type: String) {
+    fun notifyItemChangedByType(type: String) {
         floorItems.forEachIndexed { index, floor ->
             if (floor.type == type) {
                 this.notifyItemChanged(index)

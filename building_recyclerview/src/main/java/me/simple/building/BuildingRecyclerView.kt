@@ -25,7 +25,28 @@ class BuildingRecyclerView @JvmOverloads constructor(
         adapter = BuildingAdapter(floorItems)
     }
 
+    @Deprecated("方法名不合理", ReplaceWith(expression = "notifyItemChanged()"))
     fun notifyItemChangeByType(type: String) {
-        (adapter as BuildingAdapter).notifyItemChangeByType(type)
+        (adapter as BuildingAdapter).notifyItemChangedByType(type)
+    }
+
+    fun notifyItemChanged(type: String) {
+        (adapter as BuildingAdapter).notifyItemChangedByType(type)
+    }
+
+    fun notifyDataSetChanged() {
+        adapter?.notifyDataSetChanged()
+    }
+
+    fun findViewHolder(type: String): BuildingViewHolder? {
+        var viewHolder: BuildingViewHolder? = null
+
+        floorItems.forEachIndexed { index, floor ->
+            if (floor.type == type) {
+                viewHolder = findViewHolderForAdapterPosition(index) as? BuildingViewHolder
+            }
+        }
+
+        return viewHolder
     }
 }
