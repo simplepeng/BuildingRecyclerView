@@ -13,54 +13,51 @@
 ## 导入依赖
 
 ```groovy
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://www.jitpack.io' }
-		}
+allprojects {
+	repositories {
+		maven { url 'https://www.jitpack.io' }
 	}
+}
 ```
 
 ```groovy
-implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.1'
+implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.2'
 ```
 
 ## 使用
 
 ```xml
-    <me.simple.building.BuildingRecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+<me.simple.building.BuildingRecyclerView
+    android:id="@+id/recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 ```
 
 ```kotlin
-        //注册头部
-        recyclerView.register(R.layout.item_header)
-            .type("header")
-            .divider(color = Color.parseColor("#f3f4f8"), size = 10.dp)
+//注册头部
+recyclerView.register(R.layout.item_header)
+    .type("header")
+    .divider(color = Color.parseColor("#f3f4f8"), size = 10.dp)
 
-        //注册消息中心
-        recyclerView.register(R.layout.item_notify)
-            .type("notify")
-            .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
-            .onBind { holder ->
-                holder.setImage(R.id.ivIcon, R.drawable.ic_notification)
-                holder.setText(R.id.tvTitle, "消息中心")
-                Log.d("notify", "mNotifyCount: $mNotifyCount")
-                holder.setText(R.id.tvNotifyCount, mNotifyCount.toString())
-            }
-            .onItemClick { holder ->
-                toast("消息中心 -- " + holder.adapterPosition)
+//注册消息中心
+recyclerView.register(R.layout.item_notify)
+    .type("notify")
+    .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
+    .onBind { holder ->
+        holder.setImage(R.id.ivIcon, R.drawable.ic_notification)
+        holder.setText(R.id.tvTitle, "消息中心")
+        Log.d("notify", "mNotifyCount: $mNotifyCount")
+        holder.setText(R.id.tvNotifyCount, mNotifyCount.toString())
+    }
+    .onItemClick { holder ->
+        toast("消息中心 -- " + holder.adapterPosition)
 
-                mNotifyCount++
-                recyclerView.notifyItemChangeByType("notify")
-            }
+        mNotifyCount++
+        recyclerView.notifyItemChangeByType("notify")
+    }
 
-				...
-
-        //一定记得要调用
-        recyclerView.build()
+//一定记得要调用
+recyclerView.build()
 ```
 
 完整使用示例：[Example](https://github.com/simplepeng/BuildingRecyclerView/blob/master/app/src/main/java/demo/building/MainActivity.kt)
@@ -75,6 +72,6 @@ recyclerView.notifyItemChanged("notify")
 
 ## 版本迭代
 
+* v1.0.2：更新`divider`的写法
 * v1.0.1：增加`findViewHolder`方法，修改notifyType方法名。
-
 * v1.0.0：首次上传。
