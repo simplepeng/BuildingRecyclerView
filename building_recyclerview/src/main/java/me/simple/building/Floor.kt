@@ -1,13 +1,17 @@
 package me.simple.building
 
 
-class Floor(val layoutId: Int) {
+class Floor(internal val layoutId: Int) {
 
     internal var type = ""
-    var divider: Divider? = null
-    var onBindBlock: ((holder: BuildingViewHolder) -> Unit)? = null
-    var onItemClick: ((holder: BuildingViewHolder) -> Unit)? = null
-    internal var recyclable:Boolean = true
+
+    internal var divider: Divider? = null
+
+    internal var onBindBlock: ((holder: BuildingViewHolder) -> Unit)? = null
+
+    internal var onItemClick: ((holder: BuildingViewHolder) -> Unit)? = null
+
+    internal var recyclable: Boolean = true
 
     fun type(type: String): Floor {
         this.type = type
@@ -20,21 +24,21 @@ class Floor(val layoutId: Int) {
     }
 
     fun divider(
-        paddingLeft: Int = Divider.PADDING_LEFT,
-        paddingRight: Int = Divider.PADDING_RIGHT,
         color: Int = Divider.COLOR,
-        size: Int = Divider.SIZE
+        size: Int = Divider.SIZE,
+        paddingLeft: Int = Divider.PADDING_LEFT,
+        paddingRight: Int = Divider.PADDING_RIGHT
     ): Floor {
-        divider(Divider(paddingLeft, paddingRight, color, size))
+        divider(Divider(color, size, paddingLeft, paddingRight))
         return this
     }
 
     fun divider(
-        padding: Int = Divider.PADDING_LEFT,
         color: Int = Divider.COLOR,
-        size: Int = Divider.SIZE
+        size: Int = Divider.SIZE,
+        padding: Int = Divider.PADDING_LEFT
     ): Floor {
-        divider(Divider(padding, padding, color, size))
+        divider(Divider(color, size, padding, padding))
         return this
     }
 
@@ -48,7 +52,7 @@ class Floor(val layoutId: Int) {
         return this
     }
 
-    fun recyclable(recyclable:Boolean){
+    fun recyclable(recyclable: Boolean) {
         this.recyclable = recyclable
     }
 }

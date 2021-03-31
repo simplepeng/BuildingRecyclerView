@@ -4,10 +4,10 @@ import android.graphics.Color
 
 data class Divider(
 
-    val paddingLeft: Int = PADDING_LEFT,
-    val paddingRight: Int = PADDING_RIGHT,
     val color: Int = COLOR,
-    val size: Int = SIZE
+    val size: Int = SIZE,
+    val paddingLeft: Int = PADDING_LEFT,
+    val paddingRight: Int = PADDING_RIGHT
 
 ) {
     companion object {

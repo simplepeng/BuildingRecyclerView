@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class BuildingAdapter(private val floorItems: MutableList<Floor>) :
-    RecyclerView.Adapter<BuildingViewHolder>() {
+class BuildingAdapter(
+    private val floorItems: MutableList<Floor>
+) : RecyclerView.Adapter<BuildingViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         return position
