@@ -21,7 +21,7 @@ allprojects {
 ```
 
 ```groovy
-implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.2'
+implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.3'
 ```
 
 ## 使用
@@ -58,6 +58,9 @@ recyclerView.register(R.layout.item_notify)
 
 //一定记得要调用
 recyclerView.build()
+//or
+recyclerView.buildGrid()
+recyclerView.buildLinear()
 ```
 
 完整使用示例：[Example](https://github.com/simplepeng/BuildingRecyclerView/blob/master/app/src/main/java/demo/building/MainActivity.kt)
@@ -72,6 +75,7 @@ recyclerView.notifyItemChanged("notify")
 
 ## 版本迭代
 
+* v1.0.3：增加`buildGrid()`，`clearItems()`等方法
 * v1.0.2：更新`divider`的写法
 * v1.0.1：增加`findViewHolder`方法，修改notifyType方法名。
 * v1.0.0：首次上传。
