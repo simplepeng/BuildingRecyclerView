@@ -89,6 +89,34 @@ class MainActivity : AppCompatActivity() {
                 toast("设置 -- " + holder.adapterPosition)
             }
 
+
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+//        recyclerView.register(R.layout.item_normal)
+
         //一定记得要调用
         recyclerView.build()
     }

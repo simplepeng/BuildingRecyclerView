@@ -7,8 +7,9 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.roundToInt
 
-class BuildingItemDecoration(private val floorItems: MutableList<Floor>) :
-    RecyclerView.ItemDecoration() {
+open class BuildingItemDecoration(
+    private val floorItems: MutableList<Floor>
+) :RecyclerView.ItemDecoration() {
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val dividerRect = Rect()

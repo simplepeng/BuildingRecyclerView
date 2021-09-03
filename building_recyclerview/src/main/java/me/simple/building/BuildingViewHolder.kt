@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class BuildingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+open class BuildingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val viewMap = hashMapOf<Int, View>()
 

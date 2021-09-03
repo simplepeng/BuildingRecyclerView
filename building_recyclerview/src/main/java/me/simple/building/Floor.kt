@@ -1,7 +1,7 @@
 package me.simple.building
 
 
-class Floor(internal val layoutId: Int) {
+open class Floor(internal val layoutId: Int) {
 
     internal var type = ""
 
