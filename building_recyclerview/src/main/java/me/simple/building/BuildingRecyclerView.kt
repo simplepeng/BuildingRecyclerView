@@ -2,6 +2,7 @@ package me.simple.building
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,16 +14,48 @@ open class BuildingRecyclerView @JvmOverloads constructor(
 
     private val floorItems = mutableListOf<Floor>()
 
+    /**
+     *
+     */
+    fun getItems() = floorItems
+
+    /**
+     *
+     */
+    fun clearItems() {
+        floorItems.clear()
+    }
+
+    /**
+     *
+     */
     fun register(layoutId: Int): Floor {
         val builder = Floor(layoutId)
         floorItems.add(builder)
         return builder
     }
 
-    fun build() {
-        addItemDecoration(BuildingItemDecoration(floorItems))
-        layoutManager = LinearLayoutManager(context)
-        adapter = BuildingAdapter(floorItems)
+    /**
+     *
+     */
+    fun build(layoutManager: LayoutManager = LinearLayoutManager(context)) {
+        this.addItemDecoration(BuildingItemDecoration(floorItems))
+        this.layoutManager = LinearLayoutManager(context)
+        this.adapter = BuildingAdapter(floorItems)
+    }
+
+    /**
+     *
+     */
+    fun buildLinear() {
+        build(LinearLayoutManager(context))
+    }
+
+    /**
+     *
+     */
+    fun buildGrid(spanCount: Int) {
+        build(GridLayoutManager(context, spanCount))
     }
 
     @Deprecated("方法名不合理", ReplaceWith(expression = "notifyItemChanged()"))
@@ -30,14 +63,23 @@ open class BuildingRecyclerView @JvmOverloads constructor(
         (adapter as BuildingAdapter).notifyItemChangedByType(type)
     }
 
+    /**
+     * 根据注册的type更新对应的ViewHolder
+     */
     fun notifyItemChanged(type: String) {
         (adapter as BuildingAdapter).notifyItemChangedByType(type)
     }
 
+    /**
+     *
+     */
     fun notifyDataSetChanged() {
         adapter?.notifyDataSetChanged()
     }
 
+    /**
+     * 根据注册的type找到对应的ViewHolder
+     */
     fun findViewHolder(type: String): BuildingViewHolder? {
         var viewHolder: BuildingViewHolder? = null
 
