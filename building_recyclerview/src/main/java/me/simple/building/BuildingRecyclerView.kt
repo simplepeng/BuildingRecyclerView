@@ -40,7 +40,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
      */
     fun build(layoutManager: LayoutManager = LinearLayoutManager(context)) {
         this.addItemDecoration(BuildingItemDecoration(floorItems))
-        this.layoutManager = LinearLayoutManager(context)
+        this.layoutManager = layoutManager
         this.adapter = BuildingAdapter(floorItems)
     }
 

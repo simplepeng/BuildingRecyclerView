@@ -12,3 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
+nexus_upload.gradle
