@@ -46,14 +46,14 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     fun getItems() = floorItems
 
     /**
-     *
+     * 清除所有的楼层数据
      */
     fun clearItems() {
         floorItems.clear()
     }
 
     /**
-     *
+     * 注册一个ItemView
      */
     fun register(layoutId: Int): Floor {
         val builder = Floor(layoutId)
@@ -73,15 +73,22 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     /**
      *
      */
-    fun buildLinear() {
-        build(LinearLayoutManager(context))
+    fun buildLinear(
+        orientation: Int = VERTICAL,
+        reverseLayout: Boolean = false
+    ) {
+        build(LinearLayoutManager(context, orientation, reverseLayout))
     }
 
     /**
      *
      */
-    fun buildGrid(spanCount: Int) {
-        build(GridLayoutManager(context, spanCount))
+    fun buildGrid(
+        spanCount: Int,
+        orientation: Int = VERTICAL,
+        reverseLayout: Boolean = false
+    ) {
+        build(GridLayoutManager(context, spanCount, orientation, reverseLayout))
     }
 
     @Deprecated("方法名不合理", ReplaceWith(expression = "notifyItemChanged()"))
