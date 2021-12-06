@@ -69,7 +69,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     }
 
     /**
-     *
+     * 开始构建
      */
     fun build(layoutManager: LayoutManager = LinearLayoutManager(context)) {
         this.addItemDecoration(BuildingItemDecoration(floorItems))
@@ -131,4 +131,10 @@ open class BuildingRecyclerView @JvmOverloads constructor(
 
         return viewHolder
     }
+
+    /**
+     * 根据position找到对应的ViewHolder
+     */
+    fun findViewHolder(position: Int) =
+        findViewHolderForAdapterPosition(position) as? BuildingViewHolder
 }

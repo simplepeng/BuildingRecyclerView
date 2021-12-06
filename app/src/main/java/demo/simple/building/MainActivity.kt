@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 holder.setText(R.id.tvTitle, "夜间模式")
 
                 holder.getView<SwitchCompat>(R.id.scDayNight)
-                    ?.setOnCheckedChangeListener { buttonView, isChecked ->
+                    ?.setOnCheckedChangeListener { _, isChecked ->
                         toast("isChecked == $isChecked")
                     }
             }
@@ -89,34 +89,6 @@ class MainActivity : AppCompatActivity() {
             .onItemClick { holder ->
                 toast("设置 -- " + holder.adapterPosition)
             }
-
-
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
-//        recyclerView.register(R.layout.item_normal)
 
         //一定记得要调用
         binding.brv.build()
