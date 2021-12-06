@@ -91,8 +91,8 @@ class BuildingLayoutManger(
                 left = 0
                 top = maxItemHeight
             }
-            right = left + itemView.measuredWidth
-            bottom = top + itemView.measuredHeight
+            right = left + getDecoratedMeasuredWidth(itemView)
+            bottom = top + getDecoratedMeasuredHeight(itemView)
 
             layoutDecoratedWithMargins(itemView, left, top, right, bottom)
 

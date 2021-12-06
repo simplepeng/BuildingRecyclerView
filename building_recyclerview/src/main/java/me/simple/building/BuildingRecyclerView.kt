@@ -98,7 +98,9 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     fun build(layoutManager: LayoutManager = BuildingLayoutManger(context, floorItems)) {
         this.addItemDecoration(BuildingItemDecoration(floorItems))
         this.layoutManager = layoutManager
-        this.adapter = BuildingAdapter(floorItems)
+        this.adapter = BuildingAdapter(floorItems).apply {
+            setHasStableIds(true)
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.widget.SwitchCompat
 import demo.simple.building.databinding.ActivityMainBinding
+import me.simple.building.Divider
 import me.simple.ktx.dp
 import me.simple.ktx.toast
 
@@ -19,34 +20,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val gridDivider = Divider(Color.parseColor("#f3f4f8"), 10.dp)
+
         binding.apply {
             //注册头部
             brv.register(R.layout.item_header)
                 .type("header")
                 .divider(color = Color.parseColor("#f3f4f8"), size = 10.dp)
 
-            //
+            //注册Grid布局
             brv.register(R.layout.item_grid).weightNum(3).onBind { h ->
                 h.setImage(R.id.ivItem, R.drawable.ic_qq)
                 h.setText(R.id.tvItem, "QQ")
                 h.setOnClick(R.id.ivItem) {
                     toast("QQ")
                 }
-            }
+            }.divider(gridDivider)
             brv.register(R.layout.item_grid).weightNum(3).onBind { h ->
                 h.setImage(R.id.ivItem, R.drawable.ic_wx)
                 h.setText(R.id.tvItem, "WeChat")
                 h.setOnClick(R.id.ivItem) {
                     toast("WeChat")
                 }
-            }
+            }.divider(gridDivider)
             brv.register(R.layout.item_grid).weightNum(3).onBind { h ->
                 h.setImage(R.id.ivItem, R.drawable.ic_apple)
                 h.setText(R.id.tvItem, "Apple")
                 h.setOnClick(R.id.ivItem) {
                     toast("Apple")
                 }
-            }
+            }.divider(gridDivider)
 
             //注册消息中心
             brv.register(R.layout.item_notify)
@@ -62,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                     toast("消息中心 -- " + holder.adapterPosition)
 
                     mNotifyCount++
-                    binding.brv.notifyItemChangeByType("notify")
+                    binding.brv.notifyItemChanged("notify")
                 }
 
             brv.register(R.layout.item_normal)

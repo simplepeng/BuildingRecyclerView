@@ -12,6 +12,10 @@ open class BuildingAdapter(
         return position
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -21,7 +25,7 @@ open class BuildingAdapter(
         val layoutId = floor.layoutId
         val inflater = LayoutInflater.from(parent.context)
         val holder = BuildingViewHolder(inflater.inflate(layoutId, parent, false))
-        holder.setIsRecyclable(floor.recyclable)
+//        holder.setIsRecyclable(floor.recyclable)
 
         return holder
     }
