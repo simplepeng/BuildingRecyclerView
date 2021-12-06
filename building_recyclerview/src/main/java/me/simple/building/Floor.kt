@@ -13,11 +13,17 @@ open class Floor(internal val layoutId: Int) {
 
     internal var recyclable: Boolean = true
 
+    /**
+     * 注册ItemView的类型
+     */
     fun type(type: String): Floor {
         this.type = type
         return this
     }
 
+    /**
+     * 分割线
+     */
     fun divider(divider: Divider): Floor {
         this.divider = divider
         return this
@@ -42,11 +48,17 @@ open class Floor(internal val layoutId: Int) {
         return this
     }
 
+    /**
+     * onBindViewHolder回调
+     */
     fun onBind(block: (holder: BuildingViewHolder) -> Unit): Floor {
         this.onBindBlock = block
         return this
     }
 
+    /**
+     * ItemView OnClick回调
+     */
     fun onItemClick(onItemClick: (holder: BuildingViewHolder) -> Unit): Floor {
         this.onItemClick = onItemClick
         return this
