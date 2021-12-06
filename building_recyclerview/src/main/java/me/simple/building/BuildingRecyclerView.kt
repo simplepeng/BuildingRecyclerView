@@ -25,17 +25,41 @@ open class BuildingRecyclerView @JvmOverloads constructor(
 
     private fun isInEditModel() {
         val divider = Divider()
-        for (i in 0..2) {
+        register(android.R.layout.simple_list_item_1)
+            .weightNum(3)
+            .onBind { h ->
+                h.getView<TextView>(android.R.id.text1)?.apply {
+                    gravity = Gravity.CENTER
+                    text = String.format("Item %s", "0")
+                }
+            }
+        register(android.R.layout.simple_list_item_1)
+            .weightNum(3)
+            .onBind { h ->
+                h.getView<TextView>(android.R.id.text1)?.apply {
+                    gravity = Gravity.CENTER
+                    text = String.format("Item %s", "1")
+                }
+            }
+        register(android.R.layout.simple_list_item_1)
+            .weightNum(3)
+            .onBind { h ->
+                h.getView<TextView>(android.R.id.text1)?.apply {
+                    gravity = Gravity.CENTER
+                    text = String.format("Item %s", "2")
+                }
+            }
+        for (item in 0..1) {
             register(android.R.layout.simple_list_item_1)
                 .divider(divider)
                 .onBind { h ->
                     h.getView<TextView>(android.R.id.text1)?.apply {
                         gravity = Gravity.CENTER
-                        text = String.format("Item %s", i)
+                        text = String.format("Item %s", item + 2)
                     }
                 }
         }
-        buildLinear()
+        build()
     }
 
     private val floorItems = mutableListOf<Floor>()
@@ -71,7 +95,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     /**
      * 开始构建
      */
-    fun build(layoutManager: LayoutManager = LinearLayoutManager(context)) {
+    fun build(layoutManager: LayoutManager = BuildingLayoutManger(context, floorItems)) {
         this.addItemDecoration(BuildingItemDecoration(floorItems))
         this.layoutManager = layoutManager
         this.adapter = BuildingAdapter(floorItems)

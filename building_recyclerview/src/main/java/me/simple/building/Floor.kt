@@ -13,6 +13,8 @@ open class Floor(internal val layoutId: Int) {
 
     internal var recyclable: Boolean = true
 
+    internal var weightNum: Int = 1
+
     /**
      * 注册ItemView的类型
      */
@@ -64,7 +66,16 @@ open class Floor(internal val layoutId: Int) {
         return this
     }
 
-    fun recyclable(recyclable: Boolean) {
+    fun recyclable(recyclable: Boolean): Floor {
         this.recyclable = recyclable
+        return this
+    }
+
+    /**
+     *
+     */
+    fun weightNum(num: Int): Floor {
+        this.weightNum = num
+        return this
     }
 }

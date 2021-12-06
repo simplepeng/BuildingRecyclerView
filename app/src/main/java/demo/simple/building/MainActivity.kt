@@ -19,79 +19,109 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //注册头部
-        binding.brv.register(R.layout.item_header)
-            .type("header")
-            .divider(color = Color.parseColor("#f3f4f8"), size = 10.dp)
+        binding.apply {
+            //注册头部
+            brv.register(R.layout.item_header)
+                .type("header")
+                .divider(color = Color.parseColor("#f3f4f8"), size = 10.dp)
 
-        //注册消息中心
-        binding.brv.register(R.layout.item_notify)
-            .type("notify")
-            .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
-            .onBind { holder ->
-                holder.setImage(R.id.ivIcon, R.drawable.ic_notification)
-                holder.setText(R.id.tvTitle, "消息中心")
-                Log.d("notify", "mNotifyCount: $mNotifyCount")
-                holder.setText(R.id.tvNotifyCount, mNotifyCount.toString())
+            //
+            brv.register(R.layout.item_grid).weightNum(3).onBind { h ->
+                h.setImage(R.id.ivItem, R.drawable.ic_qq)
+                h.setText(R.id.tvItem, "QQ")
+                h.setOnClick(R.id.ivItem) {
+                    toast("QQ")
+                }
             }
-            .onItemClick { holder ->
-                toast("消息中心 -- " + holder.adapterPosition)
-
-                mNotifyCount++
-                binding.brv.notifyItemChangeByType("notify")
+            brv.register(R.layout.item_grid).weightNum(3).onBind { h ->
+                h.setImage(R.id.ivItem, R.drawable.ic_wx)
+                h.setText(R.id.tvItem, "WeChat")
+                h.setOnClick(R.id.ivItem) {
+                    toast("WeChat")
+                }
             }
-
-        binding.brv.register(R.layout.item_normal)
-            .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
-            .onBind { holder ->
-                holder.setImage(R.id.ivIcon, R.drawable.user_liked_pin)
-                holder.setText(R.id.tvTitle, "我赞过的")
-            }
-
-        binding.brv.register(R.layout.item_normal)
-            .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
-            .onBind { holder ->
-                holder.setImage(R.id.ivIcon, R.drawable.user_collectionset)
-                holder.setText(R.id.tvTitle, "收藏集")
+            brv.register(R.layout.item_grid).weightNum(3).onBind { h ->
+                h.setImage(R.id.ivItem, R.drawable.ic_apple)
+                h.setText(R.id.tvItem, "Apple")
+                h.setOnClick(R.id.ivItem) {
+                    toast("Apple")
+                }
             }
 
-        binding.brv.register(R.layout.item_normal)
-            .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
-            .onBind { holder ->
-                holder.setImage(R.id.ivIcon, R.drawable.user_buy)
-                holder.setText(R.id.tvTitle, "已购买")
+            //注册消息中心
+            brv.register(R.layout.item_notify)
+                .type("notify")
+                .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
+                .onBind { holder ->
+                    holder.setImage(R.id.ivIcon, R.drawable.ic_notification)
+                    holder.setText(R.id.tvTitle, "消息中心")
+                    Log.d("notify", "mNotifyCount: $mNotifyCount")
+                    holder.setText(R.id.tvNotifyCount, mNotifyCount.toString())
+                }
+                .onItemClick { holder ->
+                    toast("消息中心 -- " + holder.adapterPosition)
+
+                    mNotifyCount++
+                    binding.brv.notifyItemChangeByType("notify")
+                }
+
+            brv.register(R.layout.item_normal)
+                .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
+                .onBind { holder ->
+                    holder.setImage(R.id.ivIcon, R.drawable.user_liked_pin)
+                    holder.setText(R.id.tvTitle, "我赞过的")
+                }
+
+            brv.register(R.layout.item_normal)
+                .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
+                .onBind { holder ->
+                    holder.setImage(R.id.ivIcon, R.drawable.user_collectionset)
+                    holder.setText(R.id.tvTitle, "收藏集")
+                }
+
+            brv.register(R.layout.item_normal)
+                .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
+                .onBind { holder ->
+                    holder.setImage(R.id.ivIcon, R.drawable.user_buy)
+                    holder.setText(R.id.tvTitle, "已购买")
+                }
+
+            brv.register(R.layout.item_normal)
+                .divider(color = Color.parseColor("#f3f4f8"), size = 10.dp)
+                .onBind { holder ->
+                    holder.setImage(R.id.ivIcon, R.drawable.tag)
+                    holder.setText(R.id.tvTitle, "标签管理")
+                }
+
+            brv.register(R.layout.item_checkbox)
+                .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
+                .onBind { holder ->
+                    holder.setImage(R.id.ivIcon, R.drawable.ic_night)
+                    holder.setText(R.id.tvTitle, "夜间模式")
+
+                    holder.getView<SwitchCompat>(R.id.scDayNight)
+                        ?.setOnCheckedChangeListener { _, isChecked ->
+                            toast("isChecked == $isChecked")
+                        }
+                }
+
+            brv.register(R.layout.item_normal)
+                .onBind { holder ->
+                    holder.setImage(R.id.ivIcon, R.drawable.settings)
+                    holder.setText(R.id.tvTitle, "设置")
+                }
+                .onItemClick { holder ->
+                    toast("设置 -- " + holder.adapterPosition)
+                }
+
+            //
+            for (index in 0..10) {
+                brv.register(R.layout.item_normal)
             }
 
-        binding.brv.register(R.layout.item_normal)
-            .divider(color = Color.parseColor("#f3f4f8"), size = 10.dp)
-            .onBind { holder ->
-                holder.setImage(R.id.ivIcon, R.drawable.tag)
-                holder.setText(R.id.tvTitle, "标签管理")
-            }
-
-        binding.brv.register(R.layout.item_checkbox)
-            .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
-            .onBind { holder ->
-                holder.setImage(R.id.ivIcon, R.drawable.ic_night)
-                holder.setText(R.id.tvTitle, "夜间模式")
-
-                holder.getView<SwitchCompat>(R.id.scDayNight)
-                    ?.setOnCheckedChangeListener { _, isChecked ->
-                        toast("isChecked == $isChecked")
-                    }
-            }
-
-        binding.brv.register(R.layout.item_normal)
-            .onBind { holder ->
-                holder.setImage(R.id.ivIcon, R.drawable.settings)
-                holder.setText(R.id.tvTitle, "设置")
-            }
-            .onItemClick { holder ->
-                toast("设置 -- " + holder.adapterPosition)
-            }
-
-        //一定记得要调用
-        binding.brv.build()
+            //一定记得要调用
+            brv.build()
+        }
     }
 
 }

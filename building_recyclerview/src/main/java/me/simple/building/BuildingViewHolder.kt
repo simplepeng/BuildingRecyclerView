@@ -39,7 +39,7 @@ open class BuildingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
         imageView?.setImageResource(resId)
     }
 
-    fun click(id: Int, onClick: () -> Unit) {
+    fun setOnClick(id: Int, onClick: () -> Unit) {
         val view: View = getView(id) ?: return
         view.setOnClickListener { onClick() }
     }
