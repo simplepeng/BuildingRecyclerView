@@ -1,16 +1,42 @@
 package me.simple.building
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+@SuppressLint("NotifyDataSetChanged")
 open class BuildingRecyclerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : RecyclerView(context, attrs, defStyleAttr) {
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+        if (isInEditMode) {
+            isInEditModel()
+        }
+    }
+
+    private fun isInEditModel() {
+        val divider = Divider()
+        for (i in 0..2) {
+            register(android.R.layout.simple_list_item_1)
+                .divider(divider)
+                .onBind { h ->
+                    h.getView<TextView>(android.R.id.text1)?.apply {
+                        gravity = Gravity.CENTER
+                        text = String.format("Item %s", i)
+                    }
+                }
+        }
+        buildLinear()
+    }
 
     private val floorItems = mutableListOf<Floor>()
 
