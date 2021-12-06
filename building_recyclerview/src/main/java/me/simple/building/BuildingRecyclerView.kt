@@ -55,9 +55,16 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     /**
      * 注册一个ItemView
      */
-    fun register(layoutId: Int): Floor {
+    fun register(
+        layoutId: Int,
+        index: Int = -1
+    ): Floor {
         val builder = Floor(layoutId)
-        floorItems.add(builder)
+        if (index == -1) {
+            floorItems.add(builder)
+        } else {
+            floorItems.add(index, builder)
+        }
         return builder
     }
 
