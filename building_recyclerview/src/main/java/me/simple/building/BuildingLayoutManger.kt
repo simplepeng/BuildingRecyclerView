@@ -81,11 +81,11 @@ class BuildingLayoutManger(
         var linearWidth = 0//水平方向占用了的宽度
 
         floorItems.forEachIndexed { index, floor ->
-            val itemWidth = width / floor.weightNum
+            val itemWidth = width / floor.weightSum * floor.weightNum
 
             val itemView = recycler.getViewForPosition(index)
             addView(itemView)
-            measureChildWithMargins(itemView, 0, 0)
+//            measureChildWithMargins(itemView, 0, 0)
             measureChildren(itemView, itemWidth)
 
             if (left + itemWidth > width) {

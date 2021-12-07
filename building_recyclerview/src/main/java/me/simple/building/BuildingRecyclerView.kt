@@ -26,7 +26,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     private fun isInEditModel() {
         val divider = Divider()
         register(android.R.layout.simple_list_item_1)
-            .weightNum(3)
+            .weightRatio(3)
             .onBind { h ->
                 h.getView<TextView>(android.R.id.text1)?.apply {
                     gravity = Gravity.CENTER
@@ -34,7 +34,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
                 }
             }
         register(android.R.layout.simple_list_item_1)
-            .weightNum(3)
+            .weightRatio(3)
             .onBind { h ->
                 h.getView<TextView>(android.R.id.text1)?.apply {
                     gravity = Gravity.CENTER
@@ -42,7 +42,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
                 }
             }
         register(android.R.layout.simple_list_item_1)
-            .weightNum(3)
+            .weightRatio(3)
             .onBind { h ->
                 h.getView<TextView>(android.R.id.text1)?.apply {
                     gravity = Gravity.CENTER
@@ -90,7 +90,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
         layoutId: Int,
         index: Int = floorItems.size
     ): Floor {
-        val builder = Floor(layoutId)
+        val builder = Floor(layoutId, index, buildingAdapter)
         floorItems.add(index, builder)
         return builder
     }

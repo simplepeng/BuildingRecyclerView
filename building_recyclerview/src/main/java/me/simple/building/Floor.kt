@@ -1,7 +1,11 @@
 package me.simple.building
 
 
-open class Floor(internal val layoutId: Int) {
+open class Floor(
+    internal val layoutId: Int,
+    private val index: Int,
+    private val adapter: BuildingAdapter?
+) {
 
     internal var type = ""
 
@@ -13,6 +17,7 @@ open class Floor(internal val layoutId: Int) {
 
     internal var recyclable: Boolean = true
 
+    internal var weightSum: Int = 1
     internal var weightNum: Int = 1
 
     /**
@@ -66,16 +71,31 @@ open class Floor(internal val layoutId: Int) {
         return this
     }
 
+    /**
+     *
+     */
     fun recyclable(recyclable: Boolean): Floor {
         this.recyclable = recyclable
         return this
     }
 
     /**
-     *
+     * 权重比例
+     * 也就是所占横向宽度的比例
      */
-    fun weightNum(num: Int): Floor {
+    fun weightRatio(
+        sum: Int,
+        num: Int = 1
+    ): Floor {
+        this.weightSum = sum
         this.weightNum = num
         return this
+    }
+
+    /**
+     *
+     */
+    fun notifyItemInserted() {
+        adapter?.notifyItemInserted(index)
     }
 }
