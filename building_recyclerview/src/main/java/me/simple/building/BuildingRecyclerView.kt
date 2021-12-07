@@ -81,14 +81,10 @@ open class BuildingRecyclerView @JvmOverloads constructor(
      */
     fun register(
         layoutId: Int,
-        index: Int = -1
+        index: Int = floorItems.size
     ): Floor {
         val builder = Floor(layoutId)
-        if (index == -1) {
-            floorItems.add(builder)
-        } else {
-            floorItems.add(index, builder)
-        }
+        floorItems.add(index, builder)
         return builder
     }
 
@@ -98,9 +94,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     fun build(layoutManager: LayoutManager = BuildingLayoutManger(context, floorItems)) {
         this.addItemDecoration(BuildingItemDecoration(floorItems))
         this.layoutManager = layoutManager
-        this.adapter = BuildingAdapter(floorItems).apply {
-            setHasStableIds(true)
-        }
+        this.adapter = BuildingAdapter(floorItems)
     }
 
     /**

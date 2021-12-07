@@ -118,13 +118,18 @@ class MainActivity : AppCompatActivity() {
                 }
 
             //
-            for (index in 0..10) {
-                brv.register(R.layout.item_normal)
-            }
+//            for (index in 0..10) {
+//                brv.register(R.layout.item_normal)
+//            }
 
             //一定记得要调用
             brv.build()
+//            brv.buildLinear()
         }
+    }
+
+    fun addItem() {
+        binding.brv.register(R.layout.item_normal)
     }
 
 }

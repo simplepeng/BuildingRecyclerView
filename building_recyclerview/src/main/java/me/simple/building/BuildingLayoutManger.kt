@@ -25,6 +25,7 @@ class BuildingLayoutManger(
         recycler: RecyclerView.Recycler,
         state: RecyclerView.State
     ) {
+        Log.d("BuildingLayoutManger", "onLayoutChildren")
         if (state.itemCount == 0) {
             removeAndRecycleAllViews(recycler)
             return
@@ -32,6 +33,7 @@ class BuildingLayoutManger(
         if (state.isPreLayout) {
             return
         }
+        detachAndScrapAttachedViews(recycler)
         fillChildren(recycler)
     }
 
