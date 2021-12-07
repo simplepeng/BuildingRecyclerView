@@ -62,7 +62,14 @@ open class BuildingRecyclerView @JvmOverloads constructor(
         build()
     }
 
+    //
     private val floorItems = mutableListOf<Floor>()
+
+    //
+    private val buildingAdapter = BuildingAdapter(floorItems)
+
+    //
+    private val buildingItemDecor = BuildingItemDecoration(floorItems)
 
     /**
      *
@@ -92,9 +99,9 @@ open class BuildingRecyclerView @JvmOverloads constructor(
      * 开始构建
      */
     fun build(layoutManager: LayoutManager = BuildingLayoutManger(context, floorItems)) {
-        this.addItemDecoration(BuildingItemDecoration(floorItems))
+        this.addItemDecoration(buildingItemDecor, 0)
         this.layoutManager = layoutManager
-        this.adapter = BuildingAdapter(floorItems)
+        this.adapter = buildingAdapter
     }
 
     /**
