@@ -9,7 +9,7 @@ import kotlin.math.roundToInt
 
 open class BuildingItemDecoration(
     private val floorItems: MutableList<Floor>
-) :RecyclerView.ItemDecoration() {
+) : RecyclerView.ItemDecoration() {
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val dividerRect = Rect()
@@ -49,17 +49,20 @@ open class BuildingItemDecoration(
         floorItems.forEachIndexed { index, floor ->
             if (floor.divider != null) {
                 val divider = floor.divider!!
-                val itemView = parent.getChildAt(index)
-                parent.getDecoratedBoundsWithMargins(itemView, bounds)
+                val itemView: View? = parent.getChildAt(index)
 
-                val bottom: Int = bounds.bottom + itemView.translationY.roundToInt()
-                val top: Int = bottom - divider.size
-                val left = divider.paddingLeft
-                val right = bounds.right - divider.paddingRight
-                dividerRect.set(left, top, right, bottom)
+                if (itemView != null) {
+                    parent.getDecoratedBoundsWithMargins(itemView, bounds)
 
-                paint.color = divider.color
-                canvas.drawRect(dividerRect, paint)
+                    val bottom: Int = bounds.bottom + itemView.translationY.roundToInt()
+                    val top: Int = bottom - divider.size
+                    val left = divider.paddingLeft
+                    val right = bounds.right - divider.paddingRight
+                    dividerRect.set(left, top, right, bottom)
+
+                    paint.color = divider.color
+                    canvas.drawRect(dividerRect, paint)
+                }
             }
         }
     }

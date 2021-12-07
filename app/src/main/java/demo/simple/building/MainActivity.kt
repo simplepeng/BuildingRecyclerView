@@ -124,8 +124,8 @@ class MainActivity : AppCompatActivity() {
 //            }
 
             //一定记得要调用
-            brv.build()
-//            brv.buildLinear()
+//            brv.build()
+            brv.buildLinear()
         }
     }
 
