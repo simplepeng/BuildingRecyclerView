@@ -130,7 +130,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addItem(view: View) {
-        binding.brv.register(R.layout.item_normal, 6).notifyItemInserted()
+        binding.brv.register(R.layout.item_normal, 6)
+            .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
+            .onBind { holder ->
+                holder.setText(R.id.tvTitle, "新添加的 -- ${holder.bindingAdapterPosition}")
+            }.notifyItemInserted()
     }
 
 }

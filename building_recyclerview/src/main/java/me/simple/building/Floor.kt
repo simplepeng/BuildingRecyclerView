@@ -96,6 +96,7 @@ open class Floor(
      *
      */
     fun notifyItemInserted() {
-        adapter?.notifyItemInserted(index)
+//        adapter?.notifyItemInserted(index)
+        adapter?.notifyDataSetChanged()
     }
 }
