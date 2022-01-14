@@ -25,7 +25,6 @@ class BuildingLayoutManger(
         recycler: RecyclerView.Recycler,
         state: RecyclerView.State
     ) {
-        Log.d("BuildingLayoutManger", "onLayoutChildren")
         if (state.itemCount == 0) {
             removeAndRecycleAllViews(recycler)
             return
@@ -58,7 +57,6 @@ class BuildingLayoutManger(
     }
 
     private fun getOffset(dy: Int): Int {
-        Log.d("BuildingLayoutManger", dy.toString())
         if (dy > 0) {
             val anchor = getChildAt(childCount - 1) ?: return dy
             val bottom = getDecoratedBottom(anchor)
@@ -85,15 +83,18 @@ class BuildingLayoutManger(
 
             val itemView = recycler.getViewForPosition(index)
             addView(itemView)
-//            measureChildWithMargins(itemView, 0, 0)
-            measureChildren(itemView, itemWidth)
+
+            val widthUsed = width - itemWidth
+            measureChildWithMargins(itemView, widthUsed, 0)
+//            measureChildren(itemView, itemWidth)
 
             if (left + itemWidth > width) {
                 linearWidth = 0
                 left = 0
                 top = maxItemHeight
             }
-            right = left + getDecoratedMeasuredWidth(itemView)
+//            right = left + getDecoratedMeasuredWidth(itemView)
+            right = left + itemWidth
             bottom = top + getDecoratedMeasuredHeight(itemView)
 
             layoutDecoratedWithMargins(itemView, left, top, right, bottom)

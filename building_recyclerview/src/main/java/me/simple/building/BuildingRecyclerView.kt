@@ -23,6 +23,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
         }
     }
 
+    //在布局中显示预览
     private fun isInEditModel() {
         val divider = Divider()
         register(android.R.layout.simple_list_item_1)
