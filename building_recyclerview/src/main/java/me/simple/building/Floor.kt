@@ -72,7 +72,7 @@ open class Floor(
     }
 
     /**
-     *
+     * 是否可以回收，暂时没用
      */
     fun recyclable(recyclable: Boolean): Floor {
         this.recyclable = recyclable
@@ -84,8 +84,8 @@ open class Floor(
      * 也就是所占横向宽度的比例
      */
     fun weightRatio(
-        sum: Int,
-        num: Int = 1
+        sum: Int,//宽分割的块数
+        num: Int,//要占得块数
     ): Floor {
         this.weightSum = sum
         this.weightNum = num
