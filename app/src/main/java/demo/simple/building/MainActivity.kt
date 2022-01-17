@@ -36,20 +36,28 @@ class MainActivity : AppCompatActivity() {
                 h.setOnClick(R.id.ivItem) {
                     toast("QQ")
                 }
-            }.divider(gridDivider)
+            }
             brv.register(R.layout.item_grid).weightRatio(3, 1).onBind { h ->
                 h.setImage(R.id.ivItem, R.drawable.ic_wx)
                 h.setText(R.id.tvItem, "WeChat")
                 h.setOnClick(R.id.ivItem) {
                     toast("WeChat")
                 }
-            }.divider(gridDivider)
+            }
             brv.register(R.layout.item_grid).weightRatio(3, 1).onBind { h ->
                 h.setImage(R.id.ivItem, R.drawable.ic_apple)
                 h.setText(R.id.tvItem, "Apple")
                 h.setOnClick(R.id.ivItem) {
                     toast("Apple")
                 }
+            }
+            brv.register(R.layout.item_grid).weightRatio(2, 1).onBind { h ->
+                h.setImage(R.id.ivItem, R.drawable.ic_windows)
+                h.setText(R.id.tvItem, "Windows")
+            }.divider(gridDivider)
+            brv.register(R.layout.item_grid).weightRatio(2, 1).onBind { h ->
+                h.setImage(R.id.ivItem, R.drawable.ic_mac_os)
+                h.setText(R.id.tvItem, "MacOS")
             }.divider(gridDivider)
 
             //注册消息中心
@@ -118,10 +126,13 @@ class MainActivity : AppCompatActivity() {
                     toast("设置 -- " + holder.adapterPosition)
                 }
 
-            //
-//            for (index in 0..10) {
-//                brv.register(R.layout.item_normal)
-//            }
+            //测试
+            for (index in 0..10) {
+                brv.register(R.layout.item_normal).onBind { holder ->
+                    holder.setImage(R.id.ivIcon, R.drawable.ic_add_new)
+                    holder.setText(R.id.tvTitle, "新添加的 -- ${holder.bindingAdapterPosition}")
+                }
+            }
 
             //一定记得要调用
             brv.build()
@@ -130,11 +141,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addItem(view: View) {
-        binding.brv.register(R.layout.item_normal, 6)
+        binding.brv.register(R.layout.item_normal, 0)
+            .type("addItem")
             .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
             .onBind { holder ->
+                holder.setImage(R.id.ivIcon, R.drawable.ic_add_new)
                 holder.setText(R.id.tvTitle, "新添加的 -- ${holder.bindingAdapterPosition}")
-            }.notifyItemInserted()
+            }
+//            .notifyItemInserted()
+        binding.brv.adapter?.notifyItemInserted(0)
     }
 
 }
