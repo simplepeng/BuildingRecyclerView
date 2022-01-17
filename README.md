@@ -8,20 +8,16 @@
 
 以前我是用`MultiType`写这种布局，每次都要写`Items`的数据源，以及更新也挺麻烦的，`MultiType`是把`牛刀`，这种布局就是`BuildingRecyclerView`就够了。
 
-![BuildingRecyclerView](https://i.loli.net/2020/09/14/FRy2GhTku7DPglr.png)
+![BuildingRecyclerView](files/ic_v104.png)
 
 ## 导入依赖
 
 ```groovy
-allprojects {
-	repositories {
-		maven { url 'https://www.jitpack.io' }
-	}
-}
+maven { url 'https://www.jitpack.io' }
 ```
 
 ```groovy
-implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.2'
+implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.4'
 ```
 
 ## 使用
@@ -35,12 +31,17 @@ implementation 'com.github.simplepeng:BuildingRecyclerView:v1.0.2'
 
 ```kotlin
 //注册头部
-recyclerView.register(R.layout.item_header)
+brv.register(R.layout.item_header)
     .type("header")
     .divider(color = Color.parseColor("#f3f4f8"), size = 10.dp)
 
+//按权重分割
+brv.register(R.layout.item_grid).weightRatio(3, 1)
+brv.register(R.layout.item_grid).weightRatio(3, 1)
+brv.register(R.layout.item_grid).weightRatio(3, 1)
+
 //注册消息中心
-recyclerView.register(R.layout.item_notify)
+brv.register(R.layout.item_notify)
     .type("notify")
     .divider(paddingLeft = 20.dp, color = Color.LTGRAY)
     .onBind { holder ->
@@ -57,7 +58,7 @@ recyclerView.register(R.layout.item_notify)
     }
 
 //一定记得要调用
-recyclerView.build()
+brv.build()
 ```
 
 完整使用示例：[Example](https://github.com/simplepeng/BuildingRecyclerView/blob/master/app/src/main/java/demo/building/MainActivity.kt)
@@ -65,13 +66,15 @@ recyclerView.build()
 ### 更新Item
 
 ```kotlin
-recyclerView.notifyItemChanged("notify")
+brv.notifyItemChanged("notify")
 ```
 
 `type`	就是`register`后传入的那个`type`。
 
 ## 版本迭代
 
+* v1.0.4：默认使用`BuildingLayoutManager`，支持`权重`，`支持xml预览`
+* v1.0.3：增加`buildGrid()`，`clearItems()`等方法
 * v1.0.2：更新`divider`的写法
 * v1.0.1：增加`findViewHolder`方法，修改notifyType方法名。
 * v1.0.0：首次上传。
