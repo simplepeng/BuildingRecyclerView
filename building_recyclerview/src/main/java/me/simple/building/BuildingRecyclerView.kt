@@ -1,18 +1,76 @@
 package me.simple.building
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+@SuppressLint("NotifyDataSetChanged")
 open class BuildingRecyclerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+        if (isInEditMode) {
+            isInEditModel()
+        }
+    }
+
+    //在布局中显示预览
+    private fun isInEditModel() {
+        val divider = Divider()
+        register(android.R.layout.simple_list_item_1)
+            .weightRatio(3, 1)
+            .onBind { h ->
+                h.getView<TextView>(android.R.id.text1)?.apply {
+                    gravity = Gravity.CENTER
+                    text = String.format("Item %s", "0")
+                }
+            }
+        register(android.R.layout.simple_list_item_1)
+            .weightRatio(3, 1)
+            .onBind { h ->
+                h.getView<TextView>(android.R.id.text1)?.apply {
+                    gravity = Gravity.CENTER
+                    text = String.format("Item %s", "1")
+                }
+            }
+        register(android.R.layout.simple_list_item_1)
+            .weightRatio(3, 1)
+            .onBind { h ->
+                h.getView<TextView>(android.R.id.text1)?.apply {
+                    gravity = Gravity.CENTER
+                    text = String.format("Item %s", "2")
+                }
+            }
+        for (item in 0..1) {
+            register(android.R.layout.simple_list_item_1)
+                .divider(divider)
+                .onBind { h ->
+                    h.getView<TextView>(android.R.id.text1)?.apply {
+                        gravity = Gravity.CENTER
+                        text = String.format("Item %s", item + 2)
+                    }
+                }
+        }
+        build()
+    }
+
+    //
     private val floorItems = mutableListOf<Floor>()
+
+    //
+    private val buildingAdapter = BuildingAdapter(floorItems)
+
+    //
+    private val buildingItemDecor = BuildingItemDecoration(floorItems)
 
     /**
      *
@@ -20,42 +78,52 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     fun getItems() = floorItems
 
     /**
-     *
+     * 清除所有的楼层数据
      */
     fun clearItems() {
         floorItems.clear()
     }
 
     /**
-     *
+     * 注册一个ItemView
      */
-    fun register(layoutId: Int): Floor {
-        val builder = Floor(layoutId)
-        floorItems.add(builder)
-        return builder
+    fun register(
+        layoutId: Int,
+        index: Int = floorItems.size
+    ): Floor {
+        val floor = Floor(layoutId, index, buildingAdapter)
+        floorItems.add(index, floor)
+        return floor
     }
 
     /**
-     *
+     * 开始构建
      */
-    fun build(layoutManager: LayoutManager = LinearLayoutManager(context)) {
-        this.addItemDecoration(BuildingItemDecoration(floorItems))
+    fun build(layoutManager: LayoutManager = BuildingLayoutManger(context, floorItems)) {
+        this.addItemDecoration(buildingItemDecor, 0)
         this.layoutManager = layoutManager
-        this.adapter = BuildingAdapter(floorItems)
+        this.adapter = buildingAdapter
     }
 
     /**
      *
      */
-    fun buildLinear() {
-        build(LinearLayoutManager(context))
+    fun buildLinear(
+        orientation: Int = VERTICAL,
+        reverseLayout: Boolean = false
+    ) {
+        build(LinearLayoutManager(context, orientation, reverseLayout))
     }
 
     /**
      *
      */
-    fun buildGrid(spanCount: Int) {
-        build(GridLayoutManager(context, spanCount))
+    fun buildGrid(
+        spanCount: Int,
+        orientation: Int = VERTICAL,
+        reverseLayout: Boolean = false
+    ) {
+        build(GridLayoutManager(context, spanCount, orientation, reverseLayout))
     }
 
     @Deprecated("方法名不合理", ReplaceWith(expression = "notifyItemChanged()"))
@@ -71,7 +139,7 @@ open class BuildingRecyclerView @JvmOverloads constructor(
     }
 
     /**
-     *
+     * 更新
      */
     fun notifyDataSetChanged() {
         adapter?.notifyDataSetChanged()
@@ -91,4 +159,10 @@ open class BuildingRecyclerView @JvmOverloads constructor(
 
         return viewHolder
     }
+
+    /**
+     * 根据position找到对应的ViewHolder
+     */
+    fun findViewHolder(position: Int) =
+        findViewHolderForAdapterPosition(position) as? BuildingViewHolder
 }
