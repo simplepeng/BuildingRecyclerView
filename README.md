@@ -59,6 +59,10 @@ brv.register(R.layout.item_notify)
 
 //一定记得要调用
 brv.build()
+//也可以使用其他LayoutManager，但是不支持`weightRatio`
+brv.build(layoutManager: LayoutManager)
+brv.buildLinear()
+brv.buildGrid()
 ```
 
 完整使用示例：[Example](https://github.com/simplepeng/BuildingRecyclerView/blob/master/app/src/main/java/demo/building/MainActivity.kt)
